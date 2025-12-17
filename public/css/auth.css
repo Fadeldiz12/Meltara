@@ -1,0 +1,257 @@
+/* =============== GLOBAL =============== */
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    /* BG linear: CEAB93 (1%) → FFFDF6 (53%) → E3CAA5 (100%) */
+    background: linear-gradient(90deg, #CEAB93 1%, #FFFDF6 53%, #E3CAA5 100%);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* =============== WRAPPER =============== */
+.auth-container{
+    width: 1000px;
+    position: relative;
+}
+
+.auth-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    position: relative;
+    transition: transform .7s cubic-bezier(.25,.8,.25,1);
+}
+
+/* animasi kalau mau dipakai di login / signup toggle */
+.auth-box.slide-left{  transform: translateX(-140px); }
+.auth-box.slide-right{ transform: translateX(140px); }
+
+/* sign-up mode (gambar pindah ke kanan)  */
+.reverse{ flex-direction: row-reverse; }
+
+/* =============== CAKE CARD =============== */
+.cake-card{
+    width: 420px;
+    height: 420px;
+    border-radius: 60px;
+    /* radial CEAB93 → 68564A */
+    background: radial-gradient(circle at 50% 30%, #CEAB93 20%, #68564A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 30px 55px rgba(0,0,0,0.35);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+.cake-card img{
+    width: 260px;
+    transition: transform .6s ease;
+}
+
+.slide-left  .cake-card img{ transform: translateX(-14px); }
+.slide-right .cake-card img{ transform: translateX( 14px); }
+
+/* =============== FORM CARD =============== */
+/*
+   Catatan:
+   - Card ini yang “transparan” (D9D9D9 opacity 2%).
+   - Dia sedikit nyambung / overlap ke card kue.
+   - Ukuran dibuat konsisten untuk login / signup / forgot.
+*/
+.form-card{
+    width: 520px;
+    min-height: 310px;
+    padding: 38px 48px 40px 48px;
+    border-radius: 55px;
+    position: relative;
+    margin-left: -90px;           /* BIKIN NYAMBUNG KE CARD KUE */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    /* D9D9D9 2% + bayangan */
+    background: rgba(217,217,217,0.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+/* inner cream agar teks terlihat jelas */
+.form-card::before{
+    content: "";
+    position: absolute;
+    inset: 16px 18px 20px 18px;
+    border-radius: 45px;
+    background: #F6EEE7;
+    z-index: -1;
+}
+
+/* kalau dipakai di reverse (sign-up) → overlap dari kanan */
+.reverse .form-card{
+    margin-left: 0;
+    margin-right: -90px;
+}
+
+/* =============== TITLE LOGIN / SIGNUP / FORGOT =============== */
+.form-card h2{
+    font-size: 26px;
+    margin: 0 0 26px 0;
+    text-align: center;
+    font-weight: 700;
+
+    /* gradient text CEAB93 → 5A4730 */
+    background: linear-gradient(90deg, #CEAB93 0%, #5A4730 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* =============== INPUT & LABEL =============== */
+.form-card label{
+    font-size: 14px;
+    opacity: .9;
+    display: block;
+    margin-bottom: 4px;
+    color: #5A4730;
+}
+
+.form-card input{
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 2px solid #A48A78;
+    margin-bottom: 20px;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    color: #4B3A2B;
+}
+
+/* =============== BUTTON LOGIN =============== */
+.btn-login{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 24px;
+    margin-top: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+
+    /* gradient CEAB93 → 5A4730 */
+    background: linear-gradient(180deg, #CEAB93 0%, #5A4730 100%);
+    box-shadow: 0 10px 20px rgba(90,71,48,0.35);
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        filter .15s ease;
+}
+
+.btn-login:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 13px 26px rgba(90,71,48,0.45);
+    filter: brightness(1.03);
+}
+
+.btn-login:active{
+    transform: translateY(1px);
+    box-shadow: 0 7px 16px rgba(90,71,48,0.35);
+}
+
+/* =============== LINKS (Create account / Forgot) =============== */
+.register-text,
+.forgot-password-text{
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+.register-text a,
+.forgot-password-text a{
+    color: #5A4730;
+    font-weight: 600;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.register-text a:hover,
+.forgot-password-text a:hover{
+    text-decoration: underline;
+}
+
+/* kalau di halaman login mau pakai 2 link kiri-kanan */
+.auth-links{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px;
+    font-size: 13px;
+}
+
+.auth-links a{
+    color: #5A4730;
+    text-decoration: none;
+}
+
+.auth-links a:hover{
+    text-decoration: underline;
+}
+
+/* =============== ALERT =============== */
+.alert{
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.alert-success{
+    background: #c8f7c5;
+    border-left: 4px solid #3c763d;
+}
+
+.alert-danger{
+    background: #ffbaba;
+    border-left: 4px solid #a94442;
+}
+
+/* =============== RESPONSIVE =============== */
+@media (max-width: 960px){
+    body{
+        align-items: flex-start;
+    }
+
+    .auth-container{
+        width: 100%;
+        padding: 20px;
+    }
+
+    .auth-box{
+        flex-direction: column;
+        gap: 28px;
+        transform: none !important;
+    }
+
+    .cake-card{
+        width: 320px;
+        height: 320px;
+    }
+
+    .form-card{
+        width: 100%;
+        margin: 0;
+    }
+
+    .form-card::before{
+        inset: 14px;
+    }
+}

@@ -1,0 +1,392 @@
+/* ===============================
+   0. VARIABEL WARNA & GLOBAL
+   =============================== */
+:root {
+    --bg-main: #FFF7F2;
+    --bg-card: #FFF9F4;
+    --bg-sidebar: #F5EBDD;
+    --text-main: #5B4B3A;
+    --text-soft: #9B8772;
+    --accent: #CBA78E;
+    --accent-strong: #D7A86E;
+    --border-soft: #E5D6C8;
+    --shadow-soft: 0 10px 22px rgba(203, 167, 142, 0.16);
+
+    --radius-card: 18px;
+    --radius-pill: 999px;
+
+    --badge-success-bg: #D7F5DF;
+    --badge-success-text: #1A7D37;
+    --badge-warning-bg: #FFF3C4;
+    --badge-warning-text: #946800;
+    --badge-danger-bg: #FFD6D6;
+    --badge-danger-text: #B3261E;
+    --badge-info-bg: #DCEBFF;
+    --badge-info-text: #1D4ED8;
+}
+
+/* ===============================
+   LAYOUT UTAMA (OVERRIDE TEMPLATE)
+   =============================== */
+
+body {
+    font-family: 'Poppins', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+/* wrapper & sidebar dari admin_template */
+.wrapper {
+    background-color: var(--bg-main);
+}
+
+/* sidebar jadi soft beige seperti desain */
+.sidebar {
+    background: var(--bg-sidebar) !important;
+    border-right: 1px solid #F2E4D4;
+}
+
+/* topbar putih bersih seperti screenshot */
+.topbar {
+    background: #FFFFFF;
+}
+
+/* area konten tengah */
+.content {
+    background: var(--bg-main);
+}
+
+/* Tambah padding horizontal di semua blok konten dashboard */
+.content > .page-header,
+.content > .kpi-grid,
+.content > .chart-row,
+.content > .two-column-row,
+.content > .card {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+
+/* ===============================
+   1. PAGE HEADER
+   =============================== */
+.page-header {
+    margin-top: 24px;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* ===============================
+   2. KARTU KPI ATAS
+   =============================== */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.kpi-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    padding: 18px 22px;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.kpi-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-soft);
+}
+
+.kpi-value {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.kpi-sub {
+    font-size: 12px;
+    color: var(--text-soft);
+}
+
+/* ===============================
+   3. CARD UMUM (grafik, tabel, dll)
+   =============================== */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    padding: 20px 22px 22px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.card h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    color: var(--text-main);
+}
+
+/* Baris dua grafik */
+.chart-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+/* Dua kolom: pesanan terbaru + stok rendah */
+.two-column-row {
+    display: grid;
+    grid-template-columns: 2fr 1.35fr;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+/* Responsive breakpoint */
+@media (max-width: 992px) {
+    .chart-row,
+    .two-column-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===============================
+   4. TABEL PESANAN TERBARU
+   =============================== */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.table thead tr {
+    background: #FBEFE0;
+}
+
+.table thead th {
+    text-align: left;
+    font-weight: 500;
+    padding: 10px 12px;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.table tbody tr {
+    background: #FFFDF9;
+}
+
+.table tbody tr:nth-child(even) {
+    background: #FFF7ED;
+}
+
+.table tbody td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #F2E4D4;
+    color: var(--text-main);
+}
+
+/* Supaya tabel tetap rapi di layar kecil */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* ===============================
+   5. BADGE (STATUS)
+   =============================== */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.badge-success {
+    background: var(--badge-success-bg);
+    color: var(--badge-success-text);
+}
+
+.badge-warning {
+    background: var(--badge-warning-bg);
+    color: var(--badge-warning-text);
+}
+
+.badge-danger {
+    background: var(--badge-danger-bg);
+    color: var(--badge-danger-text);
+}
+
+.badge-info {
+    background: var(--badge-info-bg);
+    color: var(--badge-info-text);
+}
+
+.badge-secondary {
+    background: #E7E5E4;
+    color: #44403C;
+}
+
+/* ===============================
+   6. ICON BUTTON (Lihat detail)
+   =============================== */
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: none;
+    background: #FBEFE0;
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.15s ease;
+}
+
+.icon-button:hover {
+    background: #F0DECE;
+    color: var(--text-main);
+}
+
+/* ===============================
+   7. PERINGATAN STOK RENDAH
+   =============================== */
+.low-stock-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.low-stock-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 11px 14px;
+    border-radius: 16px;
+    background: #FFFDF9;
+    border: 1px dashed #F0DECE;
+}
+
+.low-stock-item .product-name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.low-stock-item .product-stock {
+    font-size: 13px;
+    color: var(--text-soft);
+}
+
+/* ===============================
+   8. ULASAN TERBARU
+   =============================== */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.review-card {
+    background: #FFFDF9;
+    border-radius: 18px;
+    padding: 16px 18px 18px;
+    border: 1px solid #F2E4D4;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.review-header .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #E8D7C4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.review-header .customer-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.product-name-small {
+    font-size: 12px;
+    color: var(--text-soft);
+}
+
+.review-status {
+    margin-left: auto;
+}
+
+.review-rating {
+    font-size: 14px;
+    color: #E3B341;
+    margin-top: 4px;
+}
+
+.star {
+    margin-right: 2px;
+    color: #E5E7EB;
+}
+
+.star.filled {
+    color: #FFC857;
+}
+
+.review-comment {
+    font-size: 13px;
+    color: var(--text-main);
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+/* ===============================
+   9. RESPONSIVE KECIL
+   =============================== */
+@media (max-width: 768px) {
+
+    .content > .page-header,
+    .content > .kpi-grid,
+    .content > .chart-row,
+    .content > .two-column-row,
+    .content > .card {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+}

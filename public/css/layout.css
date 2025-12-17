@@ -1,0 +1,223 @@
+/* ================= GLOBAL RESET/GUARDRAILS ================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* ✅ FIX: Mencegah scroll horizontal yang menyebabkan navbar terpotong */
+    overflow-x: hidden; 
+}
+
+/* ================= NAVBAR ================= */
+.navbar{
+    width:100%;
+    height:80px;
+    padding:0;
+    background:#CEAB93;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:9999; /* ✅ REVISI: Nilai z-index tertinggi untuk mengatasi cropping */
+    box-shadow:0 3px 10px rgba(0,0,0,0.10);
+}
+
+/* Kontainer Internal untuk Centering dan Padding */
+.navbar-content-wrapper {
+    width: 100%;
+    max-width: 1280px; 
+    padding: 0 40px; 
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%; 
+}
+
+
+/* LEFT */
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.nav-left img{
+    width:56px;
+    height:56px;
+    object-fit:cover;
+    border-radius:50%;
+}
+
+.brand{
+    font-size:28px;
+    font-weight:700;
+    margin:0;
+    color:#2c1b10;
+}
+
+/* CENTER MENU (desktop) */
+.nav-center{
+    display:flex;
+    justify-content:center;
+    flex:1;
+    transition:0.3s ease;
+}
+
+.nav-center a{
+    margin:0 26px;
+    font-size:20px;
+    font-weight:700;
+    text-decoration:none;
+    color:#2d1c12;
+    letter-spacing:0.3px;
+    transition:0.25s;
+}
+
+.nav-center a:hover{
+    color:#ffffff;
+}
+
+/* RIGHT */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.icon-box{
+    width:46px;
+    height:46px;
+    background:#F9F3E8;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    position:relative;
+    text-decoration:none;
+    color:#2b2017;
+    border:1px solid rgba(0,0,0,0.06);
+}
+
+.icon-box:hover{
+    background:#ffffff;
+}
+
+.cart-badge{
+    position:absolute;
+    top:-5px;
+    right:-10px;
+    background:#ff4d4d;
+    color:white;
+    font-size:12px;
+    padding:2px 6px;
+    border-radius:50%;
+    font-weight:bold;
+}
+
+/* ================= HAMBURGER & MOBILE MENU ================= */
+.hamburger {
+    display: none; 
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    z-index: 1001; 
+}
+
+.hamburger span {
+    width: 32px;
+    height: 4px;
+    background: #2b2017;
+    border-radius: 6px;
+}
+
+
+/* MOBILE/TABLET VIEW (di bawah 900px) - Digabungkan dan Diperbaiki */
+@media(max-width: 900px) {
+    /* 1. Pengaturan Container Utama */
+    .navbar {
+        height: 70px; /* Tinggi navbar dikecilkan */
+    }
+    
+    .navbar-content-wrapper {
+        padding: 0 15px; /* Padding mobile yang lebih kecil */
+        justify-content: space-between; 
+    }
+
+    /* 2. Menu Tengah (Mobile) */
+    .nav-center {
+        display: none; 
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Sesuaikan top dengan tinggi navbar baru */
+        left: 0;
+        width: 100%;
+        background: #CEAB93;
+        box-shadow: 0 4px 5px rgba(0,0,0,0.1);
+        z-index: 998;
+        padding: 10px 0;
+        transition: all 0.35s ease;
+    }
+
+    .nav-center.active {
+        display: flex;
+    }
+    
+    .nav-center a {
+        margin: 0;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    
+    /* 3. Logo di Kiri (Order 1) */
+    .nav-left {
+        order: 1;
+        gap: 10px;
+    }
+    .nav-left img {
+        width: 44px;
+        height: 44px;
+    }
+    .brand {
+        font-size: 22px;
+    }
+    
+    /* 4. Posisi Ikon Troli/Profil (Order 2) */
+    .nav-right {
+        order: 2; /* Di sebelah logo */
+        margin-left: auto; /* Dorong ke kanan dari logo */
+        gap: 10px;
+    }
+    
+    /* 5. Tampilkan dan Gabungkan Hamburger (Order 3) */
+    .hamburger {
+        display: flex; /* Hamburger ditampilkan */
+        order: 3; /* Paling Kanan, TEPRAT DI SAMPING nav-right */
+        /* ✅ FIX: Jarak sedikit dari ikon Profil/nav-right (membuat tampilan menyatu) */
+        margin-left: 10px; 
+        width: 40px; /* Ukuran disesuaikan */
+        height: 40px; /* Ukuran disesuaikan */
+        justify-content: center;
+        align-items: center;
+    }
+    .hamburger span {
+        width: 25px; /* Ukuran disesuaikan */
+        height: 3px; /* Ukuran disesuaikan */
+    }
+    
+    /* 6. Penyesuaian ikon */
+    .icon-box {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    .cart-badge {
+        font-size: 10px;
+        padding: 1px 5px;
+        top: -3px;
+        right: -8px;
+    }
+}

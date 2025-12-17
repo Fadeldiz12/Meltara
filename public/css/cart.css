@@ -1,0 +1,133 @@
+/* ===== RESET & GLOBAL ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background-color:#FFFDF7;
+    font-family:"Poppins", sans-serif;
+    overflow-x:hidden; /* mencegah geser ke samping */
+}
+
+/* ===== CART PAGE STYLE ===== */
+
+/* Container utama */
+.cart-container{
+    width:90%;
+    max-width:1100px;
+    margin:120px auto 50px; /* memberi jarak aman bawah navbar */
+}
+
+/* Item box */
+.cart-item-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#E8D5C4;
+    padding:15px 20px;
+    border-radius:8px;
+    margin-bottom:18px;
+    gap:15px;
+    flex-wrap:nowrap; /* biar item tetap lurus desktop */
+}
+
+/* Gambar produk */
+.cart-item-box img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:6px;
+    flex-shrink:0;
+}
+
+/* Nama produk */
+.item-name{
+    min-width:180px;
+    font-size:16px;
+    font-weight:600;
+}
+
+/* Qty */
+.qty-box{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.qty-box button{
+    width:24px;
+    height:24px;
+    border:none;
+    border-radius:4px;
+    background:#C69C72;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.qty-box span{
+    padding:0 6px;
+}
+
+/* Harga */
+.item-price,
+.item-subtotal{
+    width:120px;
+    text-align:center;
+}
+
+.item-subtotal{ font-weight:bold; }
+
+/* Delete Button */
+.btn-delete{
+    background:none;
+    border:none;
+    font-size:24px;
+    cursor:pointer;
+    color:#6b5043;
+}
+
+/* Summary Box */
+.cart-summary{
+    background:#F2DEC8;
+    width:350px;
+    max-width:90%;
+    padding:20px;
+    border-radius:10px;
+    margin:50px auto;
+    text-align:center;
+    box-shadow:0 0 5px rgba(0,0,0,.1);
+}
+
+.btn-checkout{
+    display:block;
+    margin-top:14px;
+    background:#C69C72;
+    color:white;
+    padding:10px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width:820px){
+    .cart-item-box{
+        flex-wrap:wrap;
+        text-align:center;
+        justify-content:center;
+        gap:15px;
+    }
+
+    .item-name,
+    .qty-box,
+    .item-price,
+    .item-subtotal{
+        width:100%;
+        justify-content:center;
+        display:flex;
+    }
+}
