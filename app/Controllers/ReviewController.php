@@ -17,9 +17,6 @@ class ReviewController extends BaseController
         $this->productModel = new ProductsModel();
     }
 
-    // =========================================
-    // USER: FORM REVIEW PER PRODUK
-    // =========================================
     public function index($productId)
     {
         $product = $this->productModel->find($productId);
@@ -34,9 +31,6 @@ class ReviewController extends BaseController
         ]);
     }
 
-    // =========================================
-    // USER: SIMPAN REVIEW
-    // =========================================
     public function save()
     {
         if (!session()->get('user_id')) {
@@ -58,9 +52,6 @@ class ReviewController extends BaseController
             ->with('success', 'Review berhasil ditambahkan!');
     }
 
-    // =========================================
-    // ADMIN: LIST SEMUA REVIEW
-    // =========================================
     public function adminIndex()
     {
         $data['reviews'] = $this->reviewModel->getAllWithProductUser();
